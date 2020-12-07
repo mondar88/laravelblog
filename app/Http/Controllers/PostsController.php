@@ -55,6 +55,10 @@ class PostsController extends Controller
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->user_id = auth()->user()->id;
+        $post->post_like = 0;
+        $post->post_dislike = 0;
+        $post->post_react = 0;
+        $post->comment_count = 0;
         $post->save();
 
         return redirect('/posts')->with('success', 'Post Created');
@@ -121,5 +125,25 @@ class PostsController extends Controller
 
         return redirect('/posts')->with('success', 'Post deleted');
 
+    }
+
+       /**
+     * increment like or dislike for the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function react(Request $request, $id)
+    {
+      $action = $request->get('action');
+        switch ($action) {
+            case 'Like':
+                Post::where('id', $id)->increment('post_like');
+                break;
+            case 'Dislike':
+                Post::where('id', $id)->decrement('post_dislike');
+                break;
+        }
+        return '';
     }
 }
