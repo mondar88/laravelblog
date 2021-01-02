@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Comment;
+use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {
+
   /**
    * Create a new controller instance.
    *
@@ -14,7 +17,8 @@ class PostsController extends Controller
    */
   public function __construct()
   {
-      $this->middleware('auth', ['except' => ['index', 'show']]);
+      
+      $this->middleware('auth', ['except' => ['index', 'show', 'react']]);
   }
 
     /**
@@ -73,7 +77,8 @@ class PostsController extends Controller
     public function show($id)
     {
       $posts = Post::find($id);
-      return view('posts.show')->with('posts', $posts);
+      $comments = $posts->comments()->orderBy('created_at', 'desc')->get();
+      return view('posts.show')->with('posts', $posts)->with('comments', $comments);
     }
 
     /**
@@ -141,7 +146,7 @@ class PostsController extends Controller
                 Post::where('id', $id)->increment('post_like');
                 break;
             case 'Dislike':
-                Post::where('id', $id)->decrement('post_dislike');
+                Post::where('id', $id)->increment('post_dislike');
                 break;
         }
         return '';

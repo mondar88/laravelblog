@@ -18,17 +18,35 @@
         </div>
         
         <hr>
-        @if(Auth::guest())
+        @if(Auth::guest() || Auth::user()->id != $posts->user_id)
+        {!! Form::open(['action' =>['App\Http\Controllers\CommentController@store', $posts->id] , 'method'=>'POST']) !!}
+
+        
         <div class="form-group">
           {{Form::label('comment', 'Comment')}}
           {{Form::textarea('comment','',['class'=>'form-control', 'placeholder'=>'Tell us what you think...'])}}
         </div>
         <div class="form-group">
-          {{Form::label('email', 'Email')}}
-          {{Form::text('email','',['class'=>'form-control', 'placeholder'=>'Please enter your email. It will be just between us'])}}
+          {{Form::label('v_email', 'Email')}}
+          {{Form::text('v_email','',['class'=>'form-control', 'placeholder'=>'Please enter your email. It will be just between us'])}}
         </div>
         {{Form::submit('Send',['class'=>'btn btn-primary'])}}
+        {!! Form::close() !!}
         @endif
+
+        <h3>Comments ( {{$comments->count()}} )</h3>
+        @foreach($comments as $comment)
+          <figure class="text-end">
+          <blockquote class="blockquote">
+          <p>{{$comment->comment_body}}</p>
+          </blockquote>
+          <figcaption class="blockquote-footer">
+          {{strstr($comment->viewer_email, '@', true)}} | <cite title="Source Title">{{$comment->created_at}}</cite>
+          </figcaption>
+          </figure>
+
+          <hr>
+        @endforeach
 
         @if(!Auth::guest())
           @if(Auth::user()->id == $posts->user_id)

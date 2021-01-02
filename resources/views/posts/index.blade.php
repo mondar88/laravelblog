@@ -26,6 +26,6 @@
 
           </div>
         @else
-
+        <p>nothing to show</p>
         @endif
 @endsection

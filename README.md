@@ -45,9 +45,12 @@
 ![Imgur](https://i.imgur.com/6rqxrqu.gif)
 
 **Other key features**
-- Like
-![Imgur](https://i.imgur.com/aOd3cFF.gif)
 
+![Imgur](https://i.imgur.com/aOd3cFF.gif)
+- Like
+
+
+![Imgur](https://i.imgur.com/juuaqEg.gif)
 - Comment
 
 ---
