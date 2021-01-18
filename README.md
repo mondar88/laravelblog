@@ -1,4 +1,4 @@
-![Imgur](https://i.imgur.com/l6RfKzA.gif)
+![Imgur](https://i.imgur.com/9SC9ZHI.gif)
 
 
 
@@ -53,6 +53,7 @@
 ![Imgur](https://i.imgur.com/juuaqEg.gif)
 - Comment
 
+![Imgur](https://i.imgur.com/52xJJYk.jpg)
 ---
 
 ## Build
@@ -67,6 +68,8 @@
 - Composer
 ### Library
 - Bootstrap 4.0
+### API
+- Google Charts
 
 ---
 
@@ -108,12 +111,13 @@ If you'd like to request a new function, feel free to do so by opening an issue 
 
 ## Version Control
 ## To-Do
-- add analytics chart for blog performance
+- add WYSWIG editor
 
 
 ## Updates
 - Like and Unlike button
 - comment tab
+- analytics chart
 
 
 ---
